@@ -59,25 +59,26 @@ public class CrawComment {
 					html = html.substring(html.indexOf("{"), html.length()) ; 
 					JSONObject json = new JSONObject(html) ; 
 					JSONArray comments = new JSONArray(json.getJSONObject("data").getJSONArray("rates").toString()) ; 
+					System.out.println(comments); 
 				    for (int i = 0 ; i < comments.length(); i++) {
 				    	
 				        JSONObject obj = comments.getJSONObject(i);
 				        // 會員編號
-				        String member = obj.getString("member");
+				        String member = (obj.isNull("member"))?"":obj.getString("member") ;
 				        // 累計採購
-				        int countQuantity = obj.getInt("countQuantity");
+				        int countQuantity = (obj.isNull("countQuantity"))?0:obj.getInt("countQuantity") ;
 				        // 採購數量
-				        int quantity = obj.getInt("quantity");
+				        int quantity = (obj.isNull("quantity"))?0:obj.getInt("quantity") ;
 				        /////////////////////////////////////////////////////////////
 				        
 				        JSONArray items = obj.getJSONArray("rateItem");
 				        JSONObject item = items.getJSONObject(0) ; 
 				        // 星級
-				        int starLevel = item.getInt("starLevel") ; 
+				        int starLevel = (item.isNull("starLevel"))?0:item.getInt("starLevel") ;
 				        // 時間
-				        String remarkTime = item.getString("remarkTime") ; 
+				        String remarkTime = (item.isNull("remarkTime"))?"":item.getString("remarkTime") ;
 				        // 評價內容
-				        String remarkContent = item.getString("remarkContent") ; 
+				        String remarkContent = (item.isNull("remarkContent"))?"":item.getString("remarkContent") ;
 				        
 				        System.out.println("會員編號:\t"+member); 
 				        System.out.println("累計採購:\t"+countQuantity); 
