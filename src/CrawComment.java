@@ -65,15 +65,15 @@ public class CrawComment {
 				        // 會員編號
 				        String member = obj.getString("member");
 				        // 累計採購
-				        String countQuantity = obj.getString("countQuantity");
+				        int countQuantity = obj.getInt("countQuantity");
 				        // 採購數量
-				        String quantity = obj.getString("quantity");
+				        int quantity = obj.getInt("quantity");
 				        /////////////////////////////////////////////////////////////
 				        
 				        JSONArray items = obj.getJSONArray("rateItem");
 				        JSONObject item = items.getJSONObject(0) ; 
 				        // 星級
-				        String starLevel = item.getString("starLevel") ; 
+				        int starLevel = item.getInt("starLevel") ; 
 				        // 時間
 				        String remarkTime = item.getString("remarkTime") ; 
 				        // 評價內容
